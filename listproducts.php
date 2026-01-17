@@ -67,7 +67,6 @@
                         <th>Harga</th>
                         <th>Stok</th>
                         <th>Satuan</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody id="tabelProduk"></tbody>
@@ -77,18 +76,16 @@
     </div>
 </div>
 
-<!-- MODAL TAMBAH / EDIT -->
+<!-- MODAL TAMBAH PRODUK -->
 <div class="modal fade" id="modalProduk">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Form Produk</h5>
+                <h5 class="modal-title">Tambah Produk</h5>
                 <button class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
             <div class="modal-body">
-                <input type="hidden" id="indexEdit">
-
                 <div class="mb-2">
                     <label>Kode</label>
                     <input type="text" id="kode" class="form-control">
@@ -149,18 +146,13 @@ function tampil() {
             <td>Rp ${p.harga}</td>
             <td>${p.stok}</td>
             <td>${p.satuan}</td>
-            <td>
-                <button class="btn btn-sm btn-primary" onclick="edit(${i})">Edit</button>
-                <button class="btn btn-sm btn-danger" onclick="hapus(${i})">Hapus</button>
-            </td>
         </tr>`;
     });
     document.getElementById("tabelProduk").innerHTML = tabel;
 }
 
 function openTambah() {
-    document.getElementById("indexEdit").value = "";
-    document.querySelectorAll("input").forEach(i => i.value="");
+    document.querySelectorAll("input").forEach(i => i.value = "");
     modal.show();
 }
 
@@ -173,34 +165,9 @@ function simpan() {
         stok: stok.value,
         satuan: satuan.value
     };
-
-    let index = document.getElementById("indexEdit").value;
-    if(index === "") {
-        produk.push(data);
-    } else {
-        produk[index] = data;
-    }
+    produk.push(data);
     modal.hide();
     tampil();
-}
-
-function edit(index) {
-    let p = produk[index];
-    document.getElementById("indexEdit").value = index;
-    kode.value = p.kode;
-    nama.value = p.nama;
-    kategori.value = p.kategori;
-    harga.value = p.harga;
-    stok.value = p.stok;
-    satuan.value = p.satuan;
-    modal.show();
-}
-
-function hapus(index) {
-    if(confirm("Yakin ingin menghapus produk?")) {
-        produk.splice(index, 1);
-        tampil();
-    }
 }
 
 tampil();
