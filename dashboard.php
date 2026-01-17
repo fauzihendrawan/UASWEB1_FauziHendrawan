@@ -91,7 +91,7 @@ session_start();
       <h2>Dashboard</h2>
       <a href="#">Home</a>
       <a href="?pages=listproducts">List Produk</a>
-      <a href="?pages=customer">Customer</a>
+      <a href="?pages=costumer">Customer</a>
       <a href="#">Transaksi</a>
       <a href="#">Laporan</a>
     </div>
